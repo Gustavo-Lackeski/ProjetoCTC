@@ -91,15 +91,7 @@ public class grupo {
                 for(j = 0; j<lenght; j++)
                     if (subgrupo.indexOf(m[0][j]) != -1)
                         if (subgrupo.indexOf(m[i][j]) == -1)
-                            return false; 
-        
-        //verifica as colunas
-        for(j = 0; i<lenght; i++)
-            if (subgrupo.indexOf(m[0][j]) != -1)
-                for(i = 0; j<lenght; j++)   
-                    if (subgrupo.indexOf(m[i][0]) != -1 )
-                        if (subgrupo.indexOf(m[i][j]) == -1)
-                            return false;       
+                            return false;         
         return true;        
     }
     //encontra as combinacoes de elementos, r a r
