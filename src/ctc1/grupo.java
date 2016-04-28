@@ -7,9 +7,10 @@ import java.util.logging.Logger;
 
 public class grupo {
     private char m[][];
-    private ArrayList<Character> elementos;
+    private String elementos;
+   
     public grupo(String filename){
-        elementos = new ArrayList();
+        elementos = "";
         int i,j, lenght;
         File file = new File(filename);
         try {
@@ -18,12 +19,11 @@ public class grupo {
             BufferedReader br = new BufferedReader(reader);
             try {
                 //ler a primeira linha
-                aux = br.readLine();
-                lenght = aux.length();                
+                elementos = br.readLine();
+                lenght = elementos.length();                
                 m = new char[lenght][lenght];
                 for (i = 0; i<lenght;i++){
-                    m[0][i] = aux.charAt(i);
-                    elementos.add(aux.charAt(i));
+                    m[0][i] = elementos.charAt(i);
                 }
                 //ler o resto
                 for(i = 1; i < lenght; i++){
@@ -50,15 +50,14 @@ public class grupo {
         
     }
     //construtor que le o arquivo em monta a tabela
-    public boolean isGrupo() {   
-        //verifica as linhas        
+    public boolean isGrupo() {       
         int i,j, lenght;
         ArrayList<Character> aux = new ArrayList();
-        lenght = elementos.size();
+        lenght = elementos.length();
         //verifica as linhas
         for(i = 0; i<lenght; i++){
-            for(j = 0; j<lenght; j++){               
-                if (elementos.contains(m[i][j]) == false)
+            for(j = 0; j<lenght; j++){                
+                if (elementos.indexOf(m[i][j]) == -1)
                     return false;
                 if (aux.contains(m[i][j]) == true)
                     return false;
@@ -70,7 +69,7 @@ public class grupo {
         aux.clear();        
         for(j = 0; i<lenght; i++){
             for(i = 0; j<lenght; j++){               
-                if (elementos.contains(m[i][j]) == false)
+                if (elementos.indexOf(m[i][j]) == -1)
                     return false;
                 if (aux.contains(m[i][j]) == true)
                     return false;
@@ -80,10 +79,33 @@ public class grupo {
         }
         return true;
     }
+
+    public void combinationUtil(String elementos, char data[], int start,
+                                int end, int index, int r)
+    {
+        // Current combination is ready to be printed, print it
+        if (index == r)
+        {
+            for (int j=0; j<r; j++)
+                System.out.print(data[j]+" ");
+            System.out.println("");
+            return;
+        }
+
+        // replace index with all possible elements. The condition
+        // "end-i+1 >= r-index" makes sure that including one element
+        // at index will make a combination with remaining elements
+        // at remaining positions
+        for (int i=start; i<=end && end-i+1 >= r-index; i++)
+        {
+            data[index] = elementos.charAt(i);
+            combinationUtil(elementos, data, i+1, end, index+1, r);
+        }
+    }
     public char[][] getm(){
         return m;
     }
-    public ArrayList gete(){
+    public String gete(){
         return elementos;
     }
 }
