@@ -79,7 +79,30 @@ public class grupo {
         }
         return true;
     }
-
+    //verifica se a string subgrupo contem um subgrupo
+    public boolean isSubgrupo(String subgrupo){
+        int i,j, lenght;
+        ArrayList<Character> aux = new ArrayList();
+        lenght = elementos.length();
+        //verifica as linhas
+        for(i = 0; i<lenght; i++)
+            if (subgrupo.indexOf(m[i][0]) != -1 )
+                for(j = 0; j<lenght; j++)
+                    if (subgrupo.indexOf(m[0][j]) != -1)
+                        if (subgrupo.indexOf(m[i][j]) == -1)
+                            return false; 
+        
+        //verifica as colunas
+        for(j = 0; i<lenght; i++)
+            if (subgrupo.indexOf(m[0][j]) != -1)
+                for(i = 0; j<lenght; j++)   
+                    if (subgrupo.indexOf(m[i][0]) != -1 )
+                        if (subgrupo.indexOf(m[i][j]) == -1)
+                            return false;       
+        return true;        
+    }
+    //encontra as combinacoes de elementos, r a r
+    //futuramente: verificar se eh subgrupo
     public void combinationUtil(String elementos, char data[], int start,
                                 int end, int index, int r)
     {
