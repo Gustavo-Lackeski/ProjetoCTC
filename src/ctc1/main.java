@@ -11,14 +11,15 @@ public class main {
     public static void main(String[] args) {
         boolean b, c;
         c = false;
-        grupo g = new grupo("table 5.txt");
+        grupo g = new grupo("table 6.txt");
         b = g.isGrupo();
-        if (b == true)
-            c = g.isSubgrupo("1de");
+   //     if (b == true)
+      //      c = g.isSubgrupo("1abcde");
         g.gete();
+        g.getm();        
+        int r = 12;
+        g.combinationUtil(g.gete(), new char[r], 0, g.gete().length() - 1, 0, r);
         g.getm();
-      //  int r = 3;
-     //   g.combinationUtil(g.gete(), new char[r], 0, g.gete().length() - 1, 0, r);
     }
     
 }

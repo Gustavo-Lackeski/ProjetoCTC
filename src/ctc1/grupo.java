@@ -8,9 +8,10 @@ import java.util.logging.Logger;
 public class grupo {
     private char m[][];
     private String elementos;
-   
+    private ArrayList<String> subgrupos;
     public grupo(String filename){
         elementos = "";
+        subgrupos = new ArrayList<String>();
         int i,j, lenght;
         File file = new File(filename);
         try {
@@ -103,16 +104,16 @@ public class grupo {
     }
     //encontra as combinacoes de elementos, r a r
     //futuramente: verificar se eh subgrupo
+    //BASEADO EM: http://www.geeksforgeeks.org/print-all-possible-combinations-of-r-elements-in-a-given-array-of-size-n/
     public void combinationUtil(String elementos, char data[], int start,
                                 int end, int index, int r)
     {
         // Current combination is ready to be printed, print it
         if (index == r)
-        {
-            for (int j=0; j<r; j++)
-                System.out.print(data[j]+" ");
-            System.out.println("");
-            return;
+        {               
+               if(this.isSubgrupo(String.copyValueOf(data)))
+                   subgrupos.add(String.copyValueOf(data));
+               return;
         }
 
         // replace index with all possible elements. The condition
@@ -130,5 +131,8 @@ public class grupo {
     }
     public String gete(){
         return elementos;
+    }
+    public ArrayList<String> getSubGrupos(){
+        return subgrupos;
     }
 }
