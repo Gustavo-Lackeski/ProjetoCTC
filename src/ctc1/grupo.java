@@ -94,8 +94,7 @@ public class grupo {
                             return false;         
         return true;        
     }
-    //encontra as combinacoes de elementos, r a r
-    //futuramente: verificar se eh subgrupo
+    //encontrar os subgrupos de ordem r
     //BASEADO EM: http://www.geeksforgeeks.org/print-all-possible-combinations-of-r-elements-in-a-given-array-of-size-n/
     public void combinationUtil(String elementos, char data[], int start,
                                 int end, int index, int r)
